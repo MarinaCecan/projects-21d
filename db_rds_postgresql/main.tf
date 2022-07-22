@@ -1,0 +1,21 @@
+module "rds" {
+    source                  = "./module/rds"
+    engine                  = var.engine            
+    engine_version          = var.engine_version 
+    database_identifier     = var.database_identifier 
+    instance_class          = var.instance_class              
+    allocated_storage       = var.allocated_storage 
+    max_allocated_storage   = var.max_allocated_storage 
+    database_name           = var.database_name 
+    database_port           = var.database_port 
+    database_username       = var.database_username 
+    backup_window           = var.backup_window 
+    backup_retention_period = var.backup_retention_period 
+    maintenance_window      = var.maintenance_window 
+    vpc_id                  = var.vpc_id 
+    cidr_blocks             = var.cidr_blocks 
+    subnet_ids              = var.subnet_ids
+    multi_az                = var.multi_az                                     
+    publicly_accessible     = var.publicly_accessible
+    skip_final_snapshot     = var.skip_final_snapshot
+}
