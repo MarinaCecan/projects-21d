@@ -1,0 +1,11 @@
+[Unit]
+Description=AMI for Exchange-app/api
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/api/
+ExecStart=/home/ubuntu/packer-api/deamon-script.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
