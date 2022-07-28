@@ -1,0 +1,11 @@
+[Unit]
+Description=AMI for Exchange-app/web
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/web
+ExecStart=/home/ubuntu/packer-web/deamon-script.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
