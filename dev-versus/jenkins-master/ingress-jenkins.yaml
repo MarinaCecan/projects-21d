@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-jenkins
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: jenkins-21d.exchangeweb.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins-svc
+          servicePort: 8080
