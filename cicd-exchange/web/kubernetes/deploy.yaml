@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exchange-web
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: exchange-web
+        image: ACCOUNT.dkr.ecr.REGION.amazonaws.com/REPO:IMAGEVERSION
+        resources:
+           limits: 
+             memory: "128Mi"
+             cpu: "200m"
+           requests:
+             memory: "64Mi"
+             cpu: "100m"
+        ports:
+        - containerPort: 80
+        env:
+          - name: PORT
+            value: "80"
+          - name: API_HOST
+            value: "http://exchange-api-svc:80"
+
+#api_host env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exchange-web-svc
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-exchange
+spec:
+  rules:
+  - host: HOSTNAME  #variable from ../stages, gets changed in Makefile (make deploy)
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: exchange-web-svc
+            port:
+              number: 80
+  ingressClassName: nginx
