@@ -6,3 +6,7 @@ output "cluster_endpoint" {
 output "oidc" {
   value = module.eks_cluster.oidc
 }
+  
+  
+  
+  
