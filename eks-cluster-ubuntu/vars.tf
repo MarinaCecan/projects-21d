@@ -60,3 +60,11 @@ variable "max_size" {
   default     = "4"
   description = "The maximum number of nodes to create in the node group."
 }
+
+variable "test" {
+  type        = string
+  description = "description"
+}
+
+
+
