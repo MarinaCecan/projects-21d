@@ -63,7 +63,7 @@ variable "max_size" {
 
 variable "test" {
   type        = string
-  description = "description"
+  description = "description."
 }
 
 
